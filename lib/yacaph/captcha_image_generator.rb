@@ -4,7 +4,7 @@ rescue Exception => e
   puts "Warning: RMagick not installed, you cannot generate captcha images on this machine"
 end
 
-require 'captcha_util'
+require "yacaph/captcha_util"
 
 module CaptchaImageGenerator
 

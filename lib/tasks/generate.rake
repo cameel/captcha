@@ -1,6 +1,6 @@
 $:.unshift "#{File.dirname(__FILE__)}/../lib"
 
-require 'captcha_image_generator'
+require "yacaph/captcha_image_generator"
 
 namespace :captcha do
 
