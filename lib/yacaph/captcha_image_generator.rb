@@ -1,5 +1,5 @@
 begin
-  require 'RMagick' 
+  require 'RMagick'
 rescue Exception => e
   puts "Warning: RMagick not installed, you cannot generate captcha images on this machine"
 end
@@ -14,7 +14,7 @@ module CaptchaImageGenerator
     :image_height   => 50,
     :captcha_length => 5,
     :file_format => 'png',
-    :font_size => 44    
+    :font_size => 44
   }
 
   def self.generate_captcha_image(params = {})
@@ -22,13 +22,13 @@ module CaptchaImageGenerator
     params.reverse_merge!(@@default_parameters)
 
     file_format = ['png', 'gif'].include?(params[:file_format]) ? ".#{params[:file_format]}" : '.png'
-    
+
     text_img  = Magick::Image.new(params[:image_width].to_i, params[:image_height].to_i)
     black_img = Magick::Image.new(params[:image_width].to_i, params[:image_height].to_i) do
       self.background_color = 'black'
     end
 
-    # Generate a 5 character random string
+    # Generate a random string of requested length
     random_string = (1..params[:captcha_length].to_i).collect { @@eligible_chars[rand(@@eligible_chars.size)] }.join(' ')
 
     # Gerenate the filename based on the string where we have removed the spaces
@@ -65,4 +65,4 @@ module CaptchaImageGenerator
     GC.start
   end
 
-end  
+end
