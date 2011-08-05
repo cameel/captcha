@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.homepage         = "http://github.com/cameel/captcha"
   s.summary          = "A captcha plugin for Rails"
 
-  s.extra_rdoc_files = ["README"]
+  s.extra_rdoc_files = ["README.rdoc"]
   s.has_rdoc         = false
-  s.files            = Dir['README', '*.rb', 'lib/**/*', 'rails/**/*'].to_a
+  s.files            = Dir['README.rdoc', '*.rb', 'lib/**/*', 'rails/**/*'].to_a
   s.require_path     = "lib"
 
   s.add_dependency 'rmagick',      '>= 2.5.2'
