@@ -13,8 +13,8 @@ module CaptchaUtil
     if defined?(CAPTCHA_SALT)
       salt = CAPTCHA_SALT
     else
-      Rails.logger.warn("No salt defined, please add CAPTHCA_SALT = 'Something really random' to environment.rb")
-    end  
+      Rails.logger.warn("No salt defined, please add CAPTCHA_SALT = 'Something really random' to environment.rb")
+    end
 
     Digest::SHA1.hexdigest("#{salt}#{string}")
   end
