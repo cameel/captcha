@@ -40,7 +40,7 @@ Then run
 
 The reason why you don't need to generate images on the fly is that they have been generated in advance and all you do is pick one at random. This is done by running the following rake task, this takes a while:
 
-   rake captcha:generate COUNT=250
+    rake captcha:generate COUNT=250
 
 This will create the '/public/system/captcha' directory if it doesn't already exist and put 250 randomly generated captcha images in it.
 
@@ -50,19 +50,19 @@ Your application's secret token (config.secret_token) is by default used as a sa
 
 You can specify the following parameters when running the rake task:
 
-COUNT          - the number of images to generate, default 3
-IMAGE_HEIGHT   - the height of the captcha image in pixels, default 50
-IMAGE_WIDTH    - the width of the captcha image in pixels, default 260
-CAPTCHA_LENGTH - the number of characters in the captcha, default 5
-FILE_FORMAT    - the file type of the captcha image (png or gif), default png
-FONT_SIZE      - the font size in points, default 44)
+    COUNT          - the number of images to generate, default 3
+    IMAGE_HEIGHT   - the height of the captcha image in pixels, default 50
+    IMAGE_WIDTH    - the width of the captcha image in pixels, default 260
+    CAPTCHA_LENGTH - the number of characters in the captcha, default 5
+    FILE_FORMAT    - the file type of the captcha image (png or gif), default png
+    FONT_SIZE      - the font size in points, default 44)
 
 
 === Use the helper method(s)
 
 In your forms all you need to do is:
 
-  <%= captcha_block %>
+    <%= captcha_block %>
 
 And add a little bit of CSS styling to get a nice looking captcha validation text field and image. If you don't like the way it's setup then use the other helper methods (see captcha_helper.rb), which are more granular.
 
@@ -71,25 +71,24 @@ And add a little bit of CSS styling to get a nice looking captcha validation tex
 
 In your controller, you will need to do the following:
 
-PostController < ApplicationController
+    PostController < ApplicationController
+      validates_captcha
 
-   validates_captcha
-
-   def create
-      ...
-      if captcha_validated?
-         ...
-      else
-         ...
+      def create
+        ...
+        if captcha_validated?
+          ...
+        else
+          ...
+        end
       end
-   end
-end
+    end
 
 That's it.
 
 
 == Yacaph and Cells
 
-You can put a catpcha inside a cell view just like in normal view. Just remember to use validates_captcha both in the cell and in the controller where the cell in used. Validation must be done in the controller.
+You can put a catpcha inside a cell view just like in normal view. Just remember to use validates_captcha both in the cell and in the controller where the cell is used. Validation must be done in the controller.
 
 Copyright (c) 2008 Zendesk, released under the MIT license
