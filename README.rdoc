@@ -47,7 +47,7 @@ Next, generate the images by running the following rake task, this takes a while
 
    rake captcha:generate COUNT=250
 
-This will create the '/public/system/captcha' directory if it doesn't already exist and put 250 randomly generated captcha images.
+This will create the '/public/system/captcha' directory if it doesn't already exist and put 250 randomly generated captcha images, in it.
 
 You can specify the following parameters when running the rake task:
 
@@ -55,7 +55,8 @@ COUNT          - the number of images to generate, default 3
 IMAGE_HEIGHT   - the height of the captcha image in pixels, default 50
 IMAGE_WIDTH    - the width of the captcha image in pixels, default 260
 CAPTCHA_LENGTH - the number of characters in the captcha, default 5
-FILE_FORMAT    - the file type of the captcha image (png or gif)
+FILE_FORMAT    - the file type of the captcha image (png or gif), default png
+FONT_SIZE      - the font size in points, default 44)
 
 
 == Use the helper method(s)
