@@ -6,11 +6,11 @@ This fork works with Rails 3.0 or later and allows you to specify a file type fo
 
 Using Captcha is a five step process
 
-  1. Install ImageMagick or GraphicsMagick
-  2. Declare dependency on yacaph in your Gemfile
-  3. Generate a bunch of images off-line
-  4. Use the helper method(s)
-  5. Validate user input
+1. Install ImageMagick or GraphicsMagick
+2. Declare dependency on yacaph in your Gemfile
+3. Generate a bunch of images off-line
+4. Use the helper method(s)
+5. Validate user input
 
 The plugin has been tested on Arch Linux using ImageMagick @6.7.1.0 and the rmagick gem.
 
