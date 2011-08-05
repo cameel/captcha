@@ -38,17 +38,15 @@ Then run
 
 === Generate a bunch of images off-line
 
-The reason why you don't need to generate images on the fly is that they have been generated in advance and all you do is pick one at random.
-
-First, define a salt for your application, do this by setting the global variable CAPTCHA_SALT to a random string in e.g. your environment.rb
-
-   CAPTCHA_SALT = 'Something really random here'
-
-Next, generate the images by running the following rake task, this takes a while:
+The reason why you don't need to generate images on the fly is that they have been generated in advance and all you do is pick one at random. This is done by running the following rake task, this takes a while:
 
    rake captcha:generate COUNT=250
 
-This will create the '/public/system/captcha' directory if it doesn't already exist and put 250 randomly generated captcha images, in it.
+This will create the '/public/system/captcha' directory if it doesn't already exist and put 250 randomly generated captcha images in it.
+
+Yacaph stores salted hashes of the captcha codes in file names. This means that you must regenerate the images whenever the salt changes.
+
+Your application's secret token (config.secret_token) is by default used as a salt. It can be overridden by defining a global constant named CAPTCHA_SALT e.g. in your application.rb. Its value, preferably a long, random string, will be used instead. You can use a blank salt, but it's highly unrecommended since it makes your captcha easy to break without even analyzing the images.
 
 You can specify the following parameters when running the rake task:
 

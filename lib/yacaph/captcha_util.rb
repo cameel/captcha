@@ -8,15 +8,24 @@ module CaptchaUtil
   end
 
   def self.encrypt_string(string)
-    salt = 'This really should be random'
+    captcha_salt = salt()
 
-    if defined?(CAPTCHA_SALT)
-      salt = CAPTCHA_SALT
-    else
-      Rails.logger.warn("No salt defined, please add CAPTCHA_SALT = 'Something really random' to environment.rb")
+    if captcha_salt == nil
+      Rails.logger.warn("You either have no config.secret_token set in your Rails configuration of CAPTCHA_SALT is nil. Set your token or define CAPTCHA_SALT (e.g. in application.rb). Without a random salt your captcha is very easy to break")
+      captcha_salt = ''
     end
 
-    Digest::SHA1.hexdigest("#{salt}#{string}")
+    Digest::SHA1.hexdigest("#{captcha_salt}#{string}")
+  end
+
+  # If there is a CAPTCHA_SALT constant defined, return it.
+  # Otherwise return application's secret_token
+  def self.salt
+    if defined?(CAPTCHA_SALT)
+      return CAPTCHA_SALT
+    else
+      return Rails.application.config.secret_token
+    end
   end
 
 end
