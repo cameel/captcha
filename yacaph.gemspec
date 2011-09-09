@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name             = 'yacaph'
-  s.version          = "0.2.2"
+  s.version          = "0.2.1"
   s.date             = "2011-09-07"
   s.platform         = Gem::Platform::RUBY
 
