@@ -11,3 +11,7 @@ require "yacaph/form_builder"
 AbstractController::Base.class_eval do
   include ValidatesCaptcha
 end
+
+ActiveModel::Validations.class_eval do
+  include ValidatesCaptcha
+end
