@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name             = 'yacaph'
-  s.version          = "0.2.1"
-  s.date             = "2009-06-18"
+  s.version          = "0.2.2"
+  s.date             = "2015-02-12"
   s.platform         = Gem::Platform::RUBY
 
   # I did not put original author's e-mail here because I don't think
