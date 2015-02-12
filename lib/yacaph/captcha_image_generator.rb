@@ -10,11 +10,11 @@ module CaptchaImageGenerator
 
   @@eligible_chars     = (2..9).to_a + %w(A B C D E F G H J K L M N P Q R S T U V X Y Z)
   @@default_parameters = {
-    :image_width    => 240,
-    :image_height   => 50,
+    :image_width    => 88,
+    :image_height   => 23,
     :captcha_length => 5,
     :file_format => 'png',
-    :font_size => 44
+    :font_size => 14
   }
 
   def self.generate_captcha_image(params = {})
@@ -37,18 +37,17 @@ module CaptchaImageGenerator
     # Render the text in the image
     text_img.annotate(Magick::Draw.new, 0,0,0,0, random_string) {
       self.gravity = Magick::WestGravity
-      self.font_family = 'Thonburi'
+      self.font_family = 'DejaVu Serif'
       self.font_weight = Magick::BoldWeight
       self.fill = '#666666'
       self.stroke = 'black'
-      self.stroke_width = 2
+      self.stroke_width = 1
       self.pointsize = params[:font_size].to_f
     }
 
-    # Apply a little blur and fuzzing
-    text_img = text_img.gaussian_blur(1.2, 1.2)
+    # Make the image sketchy
+    text_img = text_img.wave(3, 88)
     text_img = text_img.sketch(20, 30.0, 30.0)
-    text_img = text_img.wave(3, 90)
 
     # Now we need to get the white out
     text_mask = text_img.negate
